@@ -4,9 +4,12 @@ from django.utils.safestring import mark_safe
 
 from apps.models import CategoryView, UserView, User
 
+
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     pass
+
+
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     list_display = ('custom_image', "name", "category", "description")
@@ -34,6 +37,7 @@ class CustomUserAdmin(UserAdmin):
 
     custom_image.short_description = "Image"
 
+
 class ExportCsvMixin:
     def export_as_csv(self, request, queryset):
         meta = self.model._meta
@@ -51,7 +55,7 @@ class ExportCsvMixin:
     export_as_csv.short_description = "Export Selected"
 
 
-@admin.register(Product)
+@admin.register(UserView)
 class ProductAdmin(admin.ModelAdmin, ExportCsvMixin):
     change_list_template = "admin/change_list.html"
     list_display = ['id', 'title']
@@ -72,7 +76,7 @@ class ProductAdmin(admin.ModelAdmin, ExportCsvMixin):
             next(reader)
             result = []
             for row in reader:
-                result.append(Product(
+                result.append(UserView(
                     pk=int(row[0]),
                     title=row[1],
                     image=row[2],
@@ -87,6 +91,8 @@ class ProductAdmin(admin.ModelAdmin, ExportCsvMixin):
         form = CsvImportForm()
         payload = {"form": form}
         return render(request, "csv_form.html", payload)
+
+
 @admin.register(CategoryView)
 class CategoryAdmin(admin.ModelAdmin):
     pass
