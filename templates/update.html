@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'update_page' foo.pk %}" method="post">
+    {% csrf_token %}
+    <div class="Update-form">
+        <h4 class="login-title">Register</h4>
+        <div class="row">
+            <div class="col-md-6 col-12 mb-20">
+                <label>name</label>
+                <input class="mb-0" type="text" name="name" placeholder="Name">
+            </div>
+            <div class="col-md-6 col-12 mb-20">
+                <label>Category</label>
+                <input class="mb-0" type="text" name="category" placeholder="Category">
+            </div>
+            <div class="col-md-6 col-12 mb-20">
+                <label>Description</label>
+                <input class="mb-0" type="text" name="description" placeholder="description">
+            </div>
+            <div class="col-md-6 col-12 mb-20">
+                <label>Image</label>
+                <input class="mb-0" type="image" name="image" placeholder="Image">
+            </div>
+
+        </div>
+        <div class="col-12">
+            <button class="Update_button mt-0" type="submit">Update</button>
+        </div>
+    </div>
+    </div>
+</form>
+</body>
+</html>
